@@ -15,7 +15,7 @@ urlpatterns = [
     path('api/cards/community', views.get_cards_community, name= "getCommunity"),
     path('api/cards/community/new', views.new_card_community, name= "newCommunity"),
     path('api/cards/community/update', views.update_card_community, name= "updateCommunity"),
-    path('api/cards/community/update', views.delete_card_community, name= "deleteCommunity"),
+    path('api/cards/community/delete', views.delete_card_community, name= "deleteCommunity"),
 
     path('api/cards/ai', views.get_cards_ai, name= "getAI"),
     path('api/cards/ai/new', views.new_card_ai, name= "newAI"),
