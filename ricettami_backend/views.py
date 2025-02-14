@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+from . import models
 
 # Create your views here.
 
@@ -51,3 +52,151 @@ def register_user(request):
     user.save()
 
     return Response({'success': 'User registered successfully'})
+
+@api_view(['GET', 'POST'])
+def get_cards_personal(request):
+    return Response({ 'isSuccess': True,'data': PersonalCard.objects})
+
+@api_view(['GET', 'POST'])
+def get_cards_community(request):
+    return Response({ 'isSuccess': True,'data': CommunityCard.objects})
+
+@api_view(['GET', 'POST'])
+def get_cards_ai(request):
+    return Response({ 'isSuccess': True,'data': AICard.objects})
+
+@api_view(['GET', 'POST'])
+def new_card_personal(request):
+    title = 'title' # request.data.get('title')
+    description ='descriptionPersonal' # request.data.get('description')
+    content = 'some content' # 'request.data.get('content')'
+    id = 0 # 'request.data.get('id')'
+
+    if PersonalCard.objects.filter(id=id).exists():
+        return Response({'isSuccess': False, 'data': 'This personal card already exists'}, status=400)
+
+    personalCard = PersonalCard.objects.create(
+        title = title,
+        description = description,
+        content = content,
+        id = id
+    )
+
+    personalCard.save()
+
+    return Response({ 'isSuccess': True,'data': personalCard})
+
+@api_view(['GET', 'POST'])
+def new_card_community(request):
+    title = 'title' # request.data.get('title')
+    description ='descriptionCommunity' # request.data.get('description')
+    content = 'some content' # 'request.data.get('content')'
+    id = 0 # 'request.data.get('id')'
+    
+    if CommunityCard.objects.filter(title=title).exists():
+        return Response({'isSuccess': False, 'data': 'This community card already exists'}, status=400)
+
+    communityCard = CommunityCard.objects.create(
+        title = title,
+        description = description,
+        content = content,
+        id = id
+    )
+
+    communityCard.save()
+
+    return Response({ 'isSuccess': True,'data': communityCard})
+
+@api_view(['GET', 'POST'])
+def new_card_ai(request):
+    title = 'title' # request.data.get('title')
+    description ='descriptionAI' # request.data.get('description')
+    content = 'some content' # 'request.data.get('content')'
+    id = 0 # 'request.data.get('id')'
+
+    if AICard.objects.filter(title=title).exists():
+        return Response({'isSuccess': False, 'data': 'This ai card already exists'}, status=400)
+
+    aiCard = AICard.objects.create(
+        title = title,
+        description = description,
+        content = content,
+        id = id
+    )
+
+    aiCard.save()
+
+    return Response({ 'isSuccess': True,'data': aiCard})
+
+@api_view(['GET', 'POST'])
+def update_card_personal(request):
+    id = 0 # request.data.get('id')
+    personalCard = PersonalCard.objects.filter(id=id)
+
+    if personalCard.exists():
+        
+        personalCard.title = 'someUpdate' # request.data.get('title')
+        personalCard.description = 'someUpdate' # request.data.get('description')
+        personalCard.content = 'someUpdate' # request.data.get('content')
+
+        personalCard.save()
+
+        return Response({'isSuccess': True, 'data': personalCard})
+    
+    else:
+        return Response({'isSuccess': False, 'data': 'This personal card does not exist'})
+
+@api_view(['GET', 'POST'])
+def update_card_community(request):
+    id = 0 # request.data.get('id')
+    communityCard = CommunityCard.objects.filter(id=id)
+
+    if communityCard.exists():
+        communityCard.title = 'someUpdate' # request.data.get('title')
+        communityCard.description = 'someUpdate' # request.data.get('description')
+        communityCard.content = 'someUpdate' # request.data.get('content')
+
+        communityCard.save()
+
+        return Response({'isSuccess': True, 'data': communityCard})
+    
+    else:
+        return Response({'isSuccess': False, 'data': 'This community card does not exist'})
+
+@api_view(['GET', 'POST'])
+def update_card_ai(request):
+    id = 0 # request.data.get('id')
+    aiCard = AICard.objects.filter(id=id)
+
+    if aiCard.exists():
+        aiCard.title = 'someUpdate' # request.data.get('title')
+        aiCard.description = 'someUpdate' # request.data.get('description')
+        aiCard.content = 'someUpdate' # request.data.get('content')
+
+        aiCard.save()
+
+        return Response({'isSuccess': True, 'data': aiCard})
+    
+    else:
+        return Response({'isSuccess': False, 'data': 'This AI card does not exist'})
+
+@api_view(['GET', 'POST'])
+def delete_card_ai(request):
+    id = 0 # request.data.get('id')
+    aiCard = AICard.objects.filter(id=id)
+
+    if aiCard.exists():
+        aiCard.title = 'someUpdate' # request.data.get('title')
+        aiCard.description = 'someUpdate' # request.data.get('description')
+        aiCard.content = 'someUpdate' # request.data.get('content')
+
+        Users.objects.
+
+        aiCard.save()
+
+        return Response({'isSuccess': True, 'data': aiCard})
+    
+    else:
+        return Response({'isSuccess': False, 'data': 'This AI card does not exist'})
+
+    
