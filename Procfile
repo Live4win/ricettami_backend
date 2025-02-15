@@ -1,1 +1,1 @@
-web: gunicorn ricettami_backend.wsgi
+web: gunicorn base.wsgi
