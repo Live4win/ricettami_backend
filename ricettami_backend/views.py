@@ -16,8 +16,8 @@ def myapp(request):
 
 @api_view(['GET', 'POST'])
 def login_user(request):
-    username = "pincoPallino"# request.POST["username"]
-    password = "sferaRotonda010" # request.POST["password"]
+    username = request.POST["username"]
+    password = request.POST["password"]
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
@@ -36,11 +36,11 @@ def logout_user(request):
 
 @api_view(['GET', 'POST'])
 def register_user(request):
-    username = 'someNewUser' # request.data.get('username')
-    password ='sferaRotonda01' # request.data.get('password')
+    username = request.data.get('username')
+    password = request.data.get('password')
 
     if not username or not password :
-        return Response({'error': 'Please provide username, password, and email'}, status=400)
+        return Response({'error': 'Please provide username and password'}, status=400)
 
     if User.objects.filter(username=username).exists():
         return Response({'error': 'Username already exists'}, status=400)
