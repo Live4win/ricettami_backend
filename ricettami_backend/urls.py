@@ -2,10 +2,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('api/', views.myapp),
-    path('api/login/', views.login_user, name="login"),
-    path('api/logout/', views.logout_user, name="logout"),
-    path('api/register/', views.register_user, name= "register"),
+    path('api', views.myapp),
+    path('api/login', views.login_user, name="login"),
+    path('api/logout', views.logout_user, name="logout"),
+    path('api/register', views.register_user, name= "register"),
 
     path('api/cards/personal', views.get_cards_personal, name= "getPersonal"),
     path('api/cards/personal/new', views.new_card_personal, name= "newPersonal"),
