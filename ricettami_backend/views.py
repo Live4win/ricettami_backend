@@ -18,7 +18,7 @@ def myapp(request):
 def login_user(request):
     email = request.POST["email"]
     password = request.POST["password"]
-    user = authenticate(request, email=email, password=password)
+    user = authenticate(request, user="baahemmanuel@hotmail.it", password=password)
     if user is not None:
         login(request, user)
         return Response({'loginResult': 'IS LOGGED IN PINCOPALLINO'})
