@@ -16,9 +16,9 @@ def myapp(request):
 
 @api_view(['GET', 'POST'])
 def login_user(request):
-    email = request.POST["email"]
+    user = request.POST["user"]
     password = request.POST["password"]
-    user = authenticate(request, user="baahemmanuel@hotmail.it", password=password)
+    user = authenticate(request, user=user, password=password)
     if user is not None:
         login(request, user)
         return Response({'loginResult': 'IS LOGGED IN PINCOPALLINO'})
