@@ -16,8 +16,8 @@ def myapp(request):
 
 @api_view(['GET', 'POST'])
 def login_user(request):
-    user = request.POST["user"]
-    password = request.POST["password"]
+    user = 'someUser' #request.POST["user"]
+    password = 'SomeUser1029' #request.POST["password"]
     user = authenticate(request, user=user, password=password)
     if user is not None:
         login(request, user)
