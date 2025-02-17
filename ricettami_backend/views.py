@@ -16,17 +16,17 @@ def myapp(request):
 
 @api_view(['GET', 'POST'])
 def login_user(request):
-    user = 'someUser' #request.POST["user"]
-    password = 'SomeUser1029' #request.POST["password"]
+    user = request.POST["user"]
+    password = request.POST["password"]
     user = authenticate(request, user=user, password=password)
     if user is not None:
         login(request, user)
-        return Response({'loginResult': 'IS LOGGED IN PINCOPALLINO'})
+        return Response({'loginResult': True, 'user': {'username': user.username, 'email': user.email}})
         # Redirect to a success page.
         ...
     else:
         # Return an 'invalid login' error message.
-        return Response({'loginResult': 'false and failed'})
+        return Response({'loginResult': False})
 
 @api_view(['GET', 'POST'])
 def logout_user(request):
